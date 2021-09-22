@@ -1,0 +1,73 @@
+﻿
+ADH-CLOUDERA
+=========
+
+This roles install and Configure cloudera with Kerberos
+
+Requirements
+------------
+
+All Repos should be configured and downloaded from Below
+
+Attunity	USB(areplicate-6.4.0-502.x86_64.rpm )
+Cloudera Manger	https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/5.16.1/  
+Cloudera Manger GPK	"https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/RPM-GPG-KEY-cloudera	"
+CDH	https://archive.cloudera.com/cdh5/parcels/5.16.1/*el7* and manifest.json
+KAFKA	https://archive.cloudera.com/kafka/parcels/3.1.1/*el7* and manifest.json
+SPARK Parcel	https://archive.cloudera.com/spark2/parcels/2.4.0.cloudera2/*el7*  and manifest.json
+SPARK2 CSD	https://archive.cloudera.com/spark2/csd/SPARK2_ON_YARN-2.4.0.cloudera2.jar
+
+
+1) The playbooks needs to run through ansible_amdocs.
+2) AWS EC-2 pem files are required to connect to servers where Cloudera needs to be installed.
+3) Kerberos RPM’s needs to be installed on Management Node and Data Node.
+4) Chrony or NTPD should be configured and running for Cloudera Installation.
+5) Under cloudera-playbook directory there is a file “hosts” before running the playbook please replace the hostname with correct management node and data node also scm_repo_url, ansible_user, ansible_password, scm_repo_gpgkey and database_method has to be changed (embedded or external).
+6) Under cloudera-playbook/group_vars there is a file “all” in this file change krb5_realm, cluster_version_cdh, cluster_version_cm and scm_parcel_repositories according to the requirement.7)79) In order to run the playbook go to 
+
+
+Group / Role Variables
+--------------
+
+Variables to Change 
+
+group_vars/all
+
+database_method: embeded
+ansible_ssh_user: ansible_amdocs
+CDH_CLUSTER_NAME: FLAT1
+krb5_realm: FLAT1_ADH.OSP.ES
+cdh_cluster_version_cdh: 5.16.1
+cdh_cluster_version_cm: 5.16.1
+cloudera_cm_rpms_repository: 'https://artifactsrepository-tc.shared-nonprod.cloud.si.orange.es/artifactory/Amdocs/cm5'
+cloudera_cm_rpms_gpkkey_location: 'https://artifactsrepository-tc.shared-nonprod.cloud.si.orange.es/artifactory/Amdocs/cm5'
+cloudera_kafka_parcel_repositoy: 'https://artifactsrepository-tc.shared-nonprod.cloud.si.orange.es/artifactory/Amdocs/Kakfa'
+cloudera_cdh_parcel_repositoy: 'https://artifactsrepository-tc.shared-nonprod.cloud.si.orange.es/artifactory/Amdocs/CDH'
+cloudera_cdh_spark_repositoy: 'https://artifactsrepository-tc.shared-nonprod.cloud.si.orange.es/artifactory/Amdocs/Spark'
+cloudera_cdh_csd_repository_location: 'https://artifactsrepository-tc.shared-nonprod.cloud.si.orange.es/artifactory/Amdocs/CSD'
+
+
+Dependencies
+------------
+
+A list of other roles hosted on Galaxy should go here, plus any details in
+regards to parameters that may need to be set for other roles, or variables that
+are used from other roles.
+
+Example Playbook
+----------------
+
+ansible-playbook --ask-vault-pass -i hosts site.yml 
+
+
+License
+-------
+
+Cloudera Free Trail
+
+Author Information
+------------------
+
+An optional section for the role authors to include contact information, or a
+website (HTML is not allowed).
+

@@ -1,0 +1,32 @@
+---
+# Cloudera playbook
+
+- name: Configure Cloudera Manager Repository
+  hosts: cdh_servers
+  roles:
+    - scm_repo 
+
+- name: Install MIT KDC Server
+  hosts: krb5_server
+  roles:
+    - krb5/server
+- name: Install MIT KDC Client
+  hosts: all
+  roles:
+    - { role: krb5/client, when: (krb5_kdc_type is defined) and (krb5_kdc_type != 'none') }
+
+- name: Install Cloudera Manager Agents
+  hosts: cdh_servers
+  roles:
+    - scm_agent 
+
+- name: Install Cloudera Manager Server
+  hosts: scm_server  
+  roles:
+    - scm 
+
+
+- name: Install CDH
+  hosts: scm_server
+  roles:
+    - cdh_flat 

@@ -1,0 +1,7 @@
+- src: git+https://torredecontrol.si.orange.es/gitlab/torredecontrolosp/cloud/alani/roles/cloudera/cdh
+- src: git+https://torredecontrol.si.orange.es/gitlab/torredecontrolosp/cloud/alani/roles/cloudera/krb5
+- src: git+https://torredecontrol.si.orange.es/gitlab/torredecontrolosp/cloud/alani/roles/cloudera/scm_repo
+- src: git+https://torredecontrol.si.orange.es/gitlab/torredecontrolosp/cloud/alani/roles/cloudera/scm_agent
+- src: git+https://torredecontrol.si.orange.es/gitlab/torredecontrolosp/cloud/alani/roles/cloudera/scm
+- src: git+https://torredecontrol.si.orange.es/gitlab/torredecontrolosp/cloud/alani/roles/cloudera/cdh
+
