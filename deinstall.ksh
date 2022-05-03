@@ -258,5 +258,6 @@ do
         yum -y remove $entity
 done
 
+#done
 #yum clean all
 exit 0
